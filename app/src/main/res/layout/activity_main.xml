@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.spdata.sbeedatagpio.MainActivity">
+    tools:context="com.speedatagpios.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SD60\SD55"
+            android:textSize="22sp" />
+
+        <Switch
+            android:id="@+id/s_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp" />
 
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content">-->
+    </LinearLayout>
 
-    <!--<Spinner-->
-    <!--android:id="@+id/sp_select_gpio5"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:entries="@array/gpio"></Spinner>-->
-
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="高"/>-->
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="低"/>-->
-    <!--</LinearLayout>-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,12 +40,14 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="17sp"
-                android:text="主机GPIO" />
+                android:text="主机GPIO"
+                android:textSize="17sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="设置GPIO1" />
 
                 <ToggleButton
@@ -66,7 +67,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -82,7 +83,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="设置GPIO2" />
 
                 <ToggleButton
@@ -92,7 +93,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -108,7 +109,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="设置GPIO3" />
 
                 <ToggleButton
@@ -118,7 +119,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -134,7 +135,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="设置GPIO4" />
 
                 <ToggleButton
@@ -144,7 +145,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -160,7 +161,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="设置GPIO5" />
 
                 <ToggleButton
@@ -170,7 +171,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -179,8 +180,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="17sp"
-                android:text="外部拓展GPIO" />
+                android:text="SD60\SD55GPIO"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_new_gpio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_style"
+                    android:text="设置GPIO5" />
+
+                <ToggleButton
+                    android:id="@+id/new_btn1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_press_off_false"
+                    android:textOff="低"
+                    android:textOn="高" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="外部拓展GPIO"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -193,7 +228,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="拓展GPIO1" />
 
                 <ToggleButton
@@ -203,7 +238,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -219,7 +254,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="拓展GPIO2" />
 
                 <ToggleButton
@@ -229,7 +264,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -245,7 +280,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="拓展GPIO3" />
 
                 <ToggleButton
@@ -255,7 +290,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
@@ -271,7 +306,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="#7c7878"
+                    android:background="@drawable/btn_style"
                     android:text="拓展GPIO4" />
 
                 <ToggleButton
@@ -281,7 +316,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_button"
+                    android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
