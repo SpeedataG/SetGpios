@@ -13,13 +13,25 @@ import java.io.IOException;
  */
 public class DeviceControl {
     //kt系列
+
     public static final String POWER_MAIN = "/sys/class/misc/mtgpio/pin";
-    //tt系列
+
+    //背夹 以及 SD60
+
     public static final String POWER_EXTERNAL = "/sys/class/misc/aw9523/gpio";
+
     //sk80 新添加
+
     public static final String POWER_EXTERNAL2 = "/sys/class/misc/aw9524/gpio";
-    //新设备上电路径
+
+    //新设备上电路径(SD55,SD60)
+
     public static final String POWER_NEWMAIN = "/sys/bus/platform/drivers/mediatek-pinctrl/10005000.pinctrl/mt_gpio";
+
+    /**
+     * 高通平台上电
+     */
+    public static final String POWER_GAOTONG = "/sys/class/switch/app_switch/app_state";
 
     /**
      * 上电类型
@@ -48,14 +60,19 @@ public class DeviceControl {
         /**
          * 主板和9524上电
          */
-        MAIN_AND_EXPAND2
-
+        MAIN_AND_EXPAND2,
+        /**
+         * 高通平台上电
+         */
+        GAOTONG_MAIN
 
     }
 
     private BufferedWriter CtrlFile;
 
     private String poweron = "";
+    private String powermodel = "";
+    private String powerdir = "";
     private String poweroff = "";
     private String currentPath = "";
 
@@ -65,12 +82,14 @@ public class DeviceControl {
 
     public DeviceControl(String path) throws IOException {
         File DeviceName = new File(path);
-        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));    //open file
+        //open file
+        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));
         currentPath = path;
     }
 
 
     private int[] gpios;
+    private String[] gtGpios;
 
     /**
      * 此方法可单独设置gpio
@@ -82,8 +101,10 @@ public class DeviceControl {
             poweron = gpio + "on";
             poweroff = gpio + "off";
         } else {
-            poweron = "-wmode " + gpio + " 0";//将GPIO99设置为GPIO模式
-            poweron = "-wdir " + gpio + " 1";//将GPIO99设置为输出模式
+            //将GPIO99设置为GPIO模式
+            powermodel = "-wmode " + gpio + " 0";
+//            //将GPIO99设置为输出模式
+            powerdir = "-wdir " + gpio + " 1";
             poweron = "-wdout " + gpio + " 1";
             poweroff = "-wdout " + gpio + " 0";
         }
@@ -92,23 +113,34 @@ public class DeviceControl {
     private PowerType power_type;
 
     /**
-     * @param power_type 上电类型
-     * @param gpios      若为主板上电 gpio[0]需为主板gpio 扩展gpio可以有多个
+     * @param powerType 上电类型
+     * @param gpios     若为主板上电 gpio[0]需为主板gpio 扩展gpio可以有多个
      * @throws IOException
      */
-    public DeviceControl(PowerType power_type, int... gpios) throws IOException {
+    public DeviceControl(PowerType powerType, int... gpios) throws IOException {
         this.gpios = gpios;
-        this.power_type = power_type;
+        this.power_type = powerType;
+    }
+
+    public DeviceControl(String powerType, String... gpios) throws IOException {
+        this.gtGpios = gpios;
+        switch (powerType) {
+            case "GAOTONG_MAIN":
+                this.power_type = PowerType.GAOTONG_MAIN;
+                break;
+            default:
+                break;
+        }
     }
 
     /**
-     * @param power_type 上电类型
-     * @param gpios      若为主板上电 gpio[0]需为主板gpio 扩展gpio可以有多个
+     * @param powerType 上电类型
+     * @param gpios     若为主板上电 gpio[0]需为主板gpio 扩展gpio可以有多个
      * @throws IOException
      */
-    public DeviceControl(String power_type, int... gpios) throws IOException {
+    public DeviceControl(String powerType, int... gpios) throws IOException {
         this.gpios = gpios;
-        switch (power_type) {
+        switch (powerType) {
             case "MAIN":
                 this.power_type = PowerType.MAIN;
                 break;
@@ -127,8 +159,31 @@ public class DeviceControl {
             case "MAIN_AND_EXPAND2":
                 this.power_type = PowerType.MAIN_AND_EXPAND2;
                 break;
+            case "GAOTONG_MAIN":
+                this.power_type = PowerType.GAOTONG_MAIN;
+                break;
+            default:
+                break;
 
         }
+    }
+
+    /**
+     * 高通平台 上电下电
+     *
+     * @param s open uhf上电； close uhf下电
+     */
+    public void gtPower(String s) {
+        try {
+            File DeviceName = new File(POWER_GAOTONG);
+            CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));
+            CtrlFile.write(s);
+            CtrlFile.flush();
+            CtrlFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -158,7 +213,7 @@ public class DeviceControl {
     }
 
     /**
-     * 外部扩展上电
+     * 外部扩展上电 9523
      *
      * @param gpio
      * @throws IOException
@@ -170,6 +225,12 @@ public class DeviceControl {
         deviceControl.DeviceClose();
     }
 
+    /**
+     * 外部扩展上电 9524
+     *
+     * @param gpio
+     * @throws IOException
+     */
     public void Expand2PowerOn(int gpio) throws IOException {
         DeviceControl deviceControl = new DeviceControl(DeviceControl.POWER_EXTERNAL2);
         deviceControl.setGpio(gpio);
@@ -178,7 +239,7 @@ public class DeviceControl {
     }
 
     /**
-     * 外部扩展下电
+     * 外部扩展下电 9523
      *
      * @param gpio
      * @throws IOException
@@ -190,6 +251,12 @@ public class DeviceControl {
         deviceControl.DeviceClose();
     }
 
+    /**
+     * 外部扩展上电 9524
+     *
+     * @param gpio
+     * @throws IOException
+     */
     public void Expand2PowerOff(int gpio) throws IOException {
         DeviceControl deviceControl = new DeviceControl(DeviceControl.POWER_EXTERNAL2);
         deviceControl.setGpio(gpio);
@@ -204,6 +271,12 @@ public class DeviceControl {
      * @throws IOException
      */
     private void writeON() throws IOException {
+//        CtrlFile.write(powermodel);
+//        CtrlFile.write(powerdir);
+        CtrlFile.write(powermodel);
+        CtrlFile.flush();
+        CtrlFile.write(powerdir);
+        CtrlFile.flush();
         CtrlFile.write(poweron);
         CtrlFile.flush();
     }
@@ -223,8 +296,7 @@ public class DeviceControl {
      *
      * @throws IOException 抛出异常
      */
-    public void PowerOnDevice() throws IOException        //poweron id device
-    {
+    public void PowerOnDevice() throws IOException {
         switch (power_type) {
             case MAIN:
                 for (int i = 0; i < gpios.length; i++) {
@@ -266,6 +338,10 @@ public class DeviceControl {
                     SystemClock.sleep(100);
                 }
                 break;
+            case GAOTONG_MAIN:
+                gtPower(gtGpios[0]);
+
+                break;
             default:
                 break;
         }
@@ -277,8 +353,7 @@ public class DeviceControl {
      *
      * @throws IOException 抛出异常
      */
-    public void PowerOffDevice() throws IOException        //poweroff id device
-    {
+    public void PowerOffDevice() throws IOException {
         switch (power_type) {
             case MAIN:
                 for (int i = 0; i < gpios.length; i++) {
@@ -315,6 +390,9 @@ public class DeviceControl {
                     newSetGpioOff(gpios[i]);
                 }
                 break;
+            case GAOTONG_MAIN:
+                gtPower(gtGpios[1]);
+                break;
             default:
                 break;
         }
@@ -325,8 +403,7 @@ public class DeviceControl {
      *
      * @throws IOException
      */
-    public void DeviceClose() throws IOException        //close file
-    {
+    public void DeviceClose() throws IOException {
         CtrlFile.close();
     }
 
@@ -338,7 +415,8 @@ public class DeviceControl {
      * @throws IOException
      */
     public void setMode(int num, int mode) throws IOException {
-        CtrlFile.write("-wmode" + num + " " + mode);   //设置为模式 0为GPIO模式
+        //设置为模式 0为GPIO模式
+        CtrlFile.write("-wmode" + num + " " + mode);
         CtrlFile.flush();
     }
 
@@ -352,8 +430,9 @@ public class DeviceControl {
      */
     public void setDir(int num, int mode, String path) throws IOException {
         File DeviceName = new File(path);
-        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));    //open file
-        CtrlFile.write("-wdir" + num + " " + mode);   //设置为输入输出
+        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));
+        //设置为输入输出
+        CtrlFile.write("-wdir" + num + " " + mode);
         CtrlFile.flush();
     }
 
@@ -367,10 +446,12 @@ public class DeviceControl {
      */
     public void setPull(int num, int mode, String path) throws IOException {
         File DeviceName = new File(path);
-        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));    //open file
-        CtrlFile.write("-wpsel" + num + " " + mode);   //设置为输入输出
+        CtrlFile = new BufferedWriter(new FileWriter(DeviceName, false));
+        // 设置为输入输出
+        CtrlFile.write("-wpsel" + num + " " + mode);
         CtrlFile.flush();
-        CtrlFile.write("-wpen" + num + " " + mode);   //设置为输入输出
+        //设置为输入输出
+        CtrlFile.write("-wpen" + num + " " + mode);
         CtrlFile.flush();
     }
 
@@ -384,41 +465,41 @@ public class DeviceControl {
      */
     public void newSetGpioOn(int gpio) throws IOException {
         DeviceControl deviceControl = new DeviceControl(POWER_NEWMAIN);
-        deviceControl.CtrlFile.write("out " + gpio + " 1");//将GPIO设置为高电平
+        //将GPIO设置为高电平
+        deviceControl.CtrlFile.write("out " + gpio + " 1");
         deviceControl.CtrlFile.flush();
         newSetMode(gpio);
         newSetDir(gpio, 1);
-
     }
 
     /**
-     * 设置新设备下点 例如sd55 sd60
+     * 设置新设备下电 例如sd55 sd60
      *
      * @param gpio
      * @throws IOException
      */
     public void newSetGpioOff(int gpio) throws IOException {
         DeviceControl deviceControl = new DeviceControl(POWER_NEWMAIN);
-        deviceControl.CtrlFile.write("out " + gpio + " 0");//将GPIO设置为低电平
+        //将GPIO设置为低电平
+        deviceControl.CtrlFile.write("out " + gpio + " 0");
         deviceControl.CtrlFile.flush();
-
     }
 
     /**
-     * 设置gpio为 gpio模式 例如sd55 sd60
+     * 设置新设备下电gpio为 gpio模式 例如sd55 sd60
      *
      * @param gpio
      * @throws IOException
      */
     public void newSetMode(int gpio) throws IOException {
         DeviceControl deviceControl = new DeviceControl(POWER_NEWMAIN);
-        deviceControl.CtrlFile.write("mode " + gpio + " 0");//将GPIO设置为GPIO模式
+        //将GPIO设置为GPIO模式
+        deviceControl.CtrlFile.write("mode " + gpio + " 0");
         deviceControl.CtrlFile.flush();
-
     }
 
     /**
-     * 设置gpio为输入/输出模式 例如sd55 sd60
+     * 设置新设备下电gpio为输入/输出模式 例如sd55 sd60
      *
      * @param gpio 要操作的gpio
      * @param dir  0：输入模式  1：输出模式
@@ -426,8 +507,7 @@ public class DeviceControl {
      */
     public void newSetDir(int gpio, int dir) throws IOException {
         DeviceControl deviceControl = new DeviceControl(POWER_NEWMAIN);
-        deviceControl.CtrlFile.write("dir " + gpio + " " + dir);//将GPIO99设置为输出模式
+        deviceControl.CtrlFile.write("dir " + gpio + " " + dir);
         deviceControl.CtrlFile.flush();
-
     }
 }
