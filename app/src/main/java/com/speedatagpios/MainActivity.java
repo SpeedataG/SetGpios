@@ -3,6 +3,7 @@ package com.speedatagpios;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -80,7 +81,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private DeviceControl deviceControl;
     private DeviceControl deviceControl2;
     private Switch mSSwitch;
+    private Button btnIMBox;
 
+    /*
+    16进制转2二进制
+     */
+    public static String hexString2binaryString(String hexString) {
+        if (hexString == null || hexString.length() % 2 != 0)
+            return null;
+        String bString = "", tmp;
+        for (int i = 0; i < hexString.length(); i++) {
+            tmp = "0000"
+                    + Integer.toBinaryString(Integer.parseInt(hexString
+                    .substring(i, i + 1), 16));
+            bString += tmp.substring(tmp.length() - 4);
+        }
+        return bString;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +184,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-
     public void setdatas(final Button btn, final ToggleButton tbtn) {
         final EditText edvCount = new EditText(MainActivity.this);
         edvCount.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -178,7 +194,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         String text = edvCount.getText().toString();
                         if (!text.equals("")) {
                             btn.setText(text);
-//                            btn.setTextColor(Color.RED);
+                            //                            btn.setTextColor(Color.RED);
                             List list = MainGPIO();
                             for (int i = 1; i < list.size(); i++) {
                                 String lists = list.get(i).toString();
@@ -223,7 +239,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         String text = edvCount.getText().toString();
                         if (!text.equals("")) {
                             btn.setText(text);
-//                            btn.setTextColor(Color.RED);
+                            //                            btn.setTextColor(Color.RED);
                             String[] split = new String[0];
                             try {
                                 split = OutGPIO().split("");
@@ -237,24 +253,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     String bb = hexString2binaryString(split[1]);
                                     List outlist = new ArrayList();
                                     if (Integer.parseInt(text) <= 7) {
-//                                        for (int i = bb.length(); i>=0 ; i--) {
-//                                            outlist.add(bb.getBytes());
-//                                        }
-//                                        for (int i = 0; i < outlist.size(); i++) {
-//                                            if (Integer.parseInt(text) == i) {
-//                                                if (outlist.get(i).equals("1")) {
-//                                                    tbtn.setChecked(true);
-//                                                    return;
-//                                                } else if (outlist.get(i).equals("0")) {
-//                                                    tbtn.setChecked(false);
-//                                                    return;
-//                                                }
-//                                            }
-//                                        }
+                                        //                                        for (int i = bb.length(); i>=0 ; i--) {
+                                        //                                            outlist.add(bb.getBytes());
+                                        //                                        }
+                                        //                                        for (int i = 0; i < outlist.size(); i++) {
+                                        //                                            if (Integer.parseInt(text) == i) {
+                                        //                                                if (outlist.get(i).equals("1")) {
+                                        //                                                    tbtn.setChecked(true);
+                                        //                                                    return;
+                                        //                                                } else if (outlist.get(i).equals("0")) {
+                                        //                                                    tbtn.setChecked(false);
+                                        //                                                    return;
+                                        //                                                }
+                                        //                                            }
+                                        //                                        }
 
-//                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
-//                                        tbtn.setChecked(true);
-//                                        mTbt1.setTextOn("高");
+                                        //                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
+                                        //                                        tbtn.setChecked(true);
+                                        //                                        mTbt1.setTextOn("高");
                                     } else {
                                         Toast.makeText(MainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
                                     }
@@ -273,20 +289,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     String gpio = Integer.toBinaryString(Integer.parseInt(OutGPIO()));
                                     List outlist = Arrays.asList(gpio);
                                     if (Integer.parseInt(text) <= 7) {
-//                                        for (int i = outlist.size(); i >=0 ; i--) {
-//                                            if (Integer.parseInt(text) == i) {
-//                                                if (outlist.get(i).equals("1")) {
-//                                                    tbtn.setChecked(true);
-//                                                    return;
-//                                                } else if (outlist.get(i).equals("0")) {
-//                                                    tbtn.setChecked(false);
-//                                                    return;
-//                                                }
-//                                            }
-//                                        }
-//                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
-//                                        tbtn.setChecked(true);
-//                                        mTbt1.setTextOn("高");
+                                        //                                        for (int i = outlist.size(); i >=0 ; i--) {
+                                        //                                            if (Integer.parseInt(text) == i) {
+                                        //                                                if (outlist.get(i).equals("1")) {
+                                        //                                                    tbtn.setChecked(true);
+                                        //                                                    return;
+                                        //                                                } else if (outlist.get(i).equals("0")) {
+                                        //                                                    tbtn.setChecked(false);
+                                        //                                                    return;
+                                        //                                                }
+                                        //                                            }
+                                        //                                        }
+                                        //                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
+                                        //                                        tbtn.setChecked(true);
+                                        //                                        mTbt1.setTextOn("高");
                                     } else {
                                         Toast.makeText(MainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
                                         tbtn.setChecked(false);
@@ -306,26 +322,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }).setNegativeButton("取消", null).show();
     }
 
-    /*
-    16进制转2二进制
-     */
-    public static String hexString2binaryString(String hexString) {
-        if (hexString == null || hexString.length() % 2 != 0)
-            return null;
-        String bString = "", tmp;
-        for (int i = 0; i < hexString.length(); i++) {
-            tmp = "0000"
-                    + Integer.toBinaryString(Integer.parseInt(hexString
-                    .substring(i, i + 1), 16));
-            bString += tmp.substring(tmp.length() - 4);
-        }
-        return bString;
-    }
-
     private void initView() {
         mBtnGpio1 = findViewById(R.id.btn_gpio1);
         mBtnGpio1.setOnClickListener(this);
         mTbt1 = findViewById(R.id.tbt1);
+        btnIMBox = findViewById(R.id.btn_to_imbox);
+        btnIMBox.setOnClickListener(this);
         mTbt1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -334,7 +336,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (isFlag==0){
+                    if (isFlag == 0) {
                         if (isChecked) {
                             deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio1.getText().toString()));
                             mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
@@ -344,7 +346,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             mTbt1.setBackgroundResource(R.drawable.btn_press_off_false);
 
                         }
-                    }else {
+                    } else {
                         if (isChecked) {
                             deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
                             mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
@@ -372,7 +374,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (isFlag==0){
+                    if (isFlag == 0) {
                         if (isChecked) {
                             deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio2.getText().toString()));
                             mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
@@ -380,7 +382,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio2.getText().toString()));
                             mTbt2.setBackgroundResource(R.drawable.btn_press_off_false);
                         }
-                    }else {
+                    } else {
                         if (isChecked) {
                             deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
                             mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
@@ -406,7 +408,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (isFlag==0){
+                    if (isFlag == 0) {
                         if (isChecked) {
                             mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio3.getText().toString()));
@@ -414,7 +416,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio3.getText().toString()));
                             mTbt3.setBackgroundResource(R.drawable.btn_press_off_false);
                         }
-                    }else {
+                    } else {
                         if (isChecked) {
                             mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
@@ -440,7 +442,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (isFlag==0){
+                    if (isFlag == 0) {
                         if (isChecked) {
                             mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio4.getText().toString()));
@@ -448,7 +450,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio4.getText().toString()));
                             mTbt4.setBackgroundResource(R.drawable.btn_press_off_false);
                         }
-                    }else {
+                    } else {
                         if (isChecked) {
                             mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
@@ -474,7 +476,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (isFlag==0){
+                    if (isFlag == 0) {
                         if (isChecked) {
                             mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio5.getText().toString()));
@@ -482,7 +484,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio5.getText().toString()));
                             mTbt5.setBackgroundResource(R.drawable.btn_press_off_false);
                         }
-                    }else {
+                    } else {
                         if (isChecked) {
                             mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
                             deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
@@ -641,6 +643,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_set_gpio4:
                 setoutdatas(mBtnSetGpio4, mTbtW4);
+                break;
+            case R.id.btn_to_imbox:
+                startActivity(new Intent(this,IMBoxGpioAct.class));
                 break;
         }
     }

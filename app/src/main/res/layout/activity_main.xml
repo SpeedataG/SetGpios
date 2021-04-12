@@ -320,6 +320,14 @@
                     android:textOff="低"
                     android:textOn="高" />
             </LinearLayout>
+            <Button
+                android:id="@+id/btn_to_imbox"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_style"
+                android:text="IMBOX" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
