@@ -1,4 +1,4 @@
-package com.speedatagpios;
+ package com.speedatagpios;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +10,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * @author xuyan  imbox
+ */
 public class IMBoxGpioAct extends AppCompatActivity {
 
-    private static String GPIO1 = "/devices/platform/function_gpio/gpio2_a0";
-    private static String GPIO2 = "/devices/platform/function_gpio/gpio2_a1";
-    private static String GPIO3 = "/devices/platform/function_gpio/gpio2_a2";
-    private static String GPIO4 = "/devices/platform/function_gpio/gpio2_a5";
+    private static final String GPIO1 = "/devices/platform/function_gpio/gpio2_a0";
+    private static final String GPIO2 = "/devices/platform/function_gpio/gpio2_a1";
+    private static final String GPIO3 = "/devices/platform/function_gpio/gpio2_a2";
+    private static final String GPIO4 = "/devices/platform/function_gpio/gpio2_a5";
     private ToggleButton mTbtW1;
     private ToggleButton mTbtW2;
     private ToggleButton mTbtW3;
@@ -84,8 +87,7 @@ public class IMBoxGpioAct extends AppCompatActivity {
     }
 
     /**
-     * @param power
-     *         0下电 1上电
+     * @param power 0下电 1上电
      */
     private void setPower(String path, String power) {
         File DeviceName = new File(path);

@@ -1,10 +1,12 @@
 package com.speedatagpios;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.serialport.DeviceControlSpd;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +21,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author xuyan  新界面
+ */
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String MAIN_GPIO = "sys/class/misc/mtgpio/pin";
     private static final String OUT_GPIO = "/sys/class/misc/aw9523/gpio";
@@ -78,8 +83,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button mBtnSetGpio4;
     private ToggleButton mTbtW4;
 
-    private DeviceControl deviceControl;
-    private DeviceControl deviceControl2;
+    private DeviceControlSpd deviceControl;
+    private DeviceControlSpd deviceControl2;
     private Switch mSSwitch;
     private Button btnIMBox;
 
@@ -87,8 +92,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     16进制转2二进制
      */
     public static String hexString2binaryString(String hexString) {
-        if (hexString == null || hexString.length() % 2 != 0)
+        if (hexString == null || hexString.length() % 2 != 0) {
             return null;
+        }
         String bString = "", tmp;
         for (int i = 0; i < hexString.length(); i++) {
             tmp = "0000"
@@ -111,9 +117,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader("/sys/class/misc/aw9523/gpio"));
-            if (reader == null) {
-                return "";
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return "";
@@ -174,11 +177,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void init() {
         try {
             if (isFlag == 0) {
-                deviceControl = new DeviceControl(DeviceControl.PowerType.MAIN);
+                deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN);
             } else {
-                deviceControl = new DeviceControl(DeviceControl.PowerType.NEW_MAIN);
+                deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN);
             }
-            deviceControl2 = new DeviceControl(DeviceControl.PowerType.EXPAND);
+            deviceControl2 = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -192,7 +195,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String text = edvCount.getText().toString();
-                        if (!text.equals("")) {
+                        if (!"".equals(text)) {
                             btn.setText(text);
                             //                            btn.setTextColor(Color.RED);
                             List list = MainGPIO();
@@ -206,12 +209,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     upordown = lists.substring(8, 9);
                                 }
                                 if (text.equals(gpio.trim())) {//gpio去空格
-                                    if (upordown.equals("1")) {
+                                    if ("1".equals(upordown)) {
                                         tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
                                         tbtn.setChecked(true);
                                         mTbt1.setTextOn("高");
                                         return;
-                                    } else if (upordown.equals("0")) {
+                                    } else if ("0".equals(upordown)) {
                                         tbtn.setChecked(false);
                                         mTbt1.setTextOff("低");
                                         tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
@@ -237,73 +240,38 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String text = edvCount.getText().toString();
-                        if (!text.equals("")) {
+                        if (!"".equals(text)) {
                             btn.setText(text);
                             //                            btn.setTextColor(Color.RED);
                             String[] split = new String[0];
                             try {
                                 split = OutGPIO().split("");
-                                if (split[1].equals("0xEA")) {
+                                if ("0xEA".equals(split[1])) {
                                     Toast.makeText(MainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
                                     tbtn.setChecked(false);
                                     mTbt1.setTextOff("低");
                                     tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
-                                    return;
                                 } else {
                                     String bb = hexString2binaryString(split[1]);
                                     List outlist = new ArrayList();
-                                    if (Integer.parseInt(text) <= 7) {
-                                        //                                        for (int i = bb.length(); i>=0 ; i--) {
-                                        //                                            outlist.add(bb.getBytes());
-                                        //                                        }
-                                        //                                        for (int i = 0; i < outlist.size(); i++) {
-                                        //                                            if (Integer.parseInt(text) == i) {
-                                        //                                                if (outlist.get(i).equals("1")) {
-                                        //                                                    tbtn.setChecked(true);
-                                        //                                                    return;
-                                        //                                                } else if (outlist.get(i).equals("0")) {
-                                        //                                                    tbtn.setChecked(false);
-                                        //                                                    return;
-                                        //                                                }
-                                        //                                            }
-                                        //                                        }
-
-                                        //                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
-                                        //                                        tbtn.setChecked(true);
-                                        //                                        mTbt1.setTextOn("高");
-                                    } else {
+                                    if (Integer.parseInt(text) > 7) {
                                         Toast.makeText(MainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             } catch (Exception e) {
-                                if (OutGPIO().equals("234")) {
+                                if ("234".equals(OutGPIO())) {
                                     Toast.makeText(MainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
                                     tbtn.setChecked(false);
                                     mTbt1.setTextOff("低");
                                     tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
-                                    return;
                                 } else {
-                                    if (OutGPIO().equals("")) {
+                                    if ("".equals(OutGPIO())) {
                                         return;
                                     }
                                     String gpio = Integer.toBinaryString(Integer.parseInt(OutGPIO()));
-                                    List outlist = Arrays.asList(gpio);
-                                    if (Integer.parseInt(text) <= 7) {
-                                        //                                        for (int i = outlist.size(); i >=0 ; i--) {
-                                        //                                            if (Integer.parseInt(text) == i) {
-                                        //                                                if (outlist.get(i).equals("1")) {
-                                        //                                                    tbtn.setChecked(true);
-                                        //                                                    return;
-                                        //                                                } else if (outlist.get(i).equals("0")) {
-                                        //                                                    tbtn.setChecked(false);
-                                        //                                                    return;
-                                        //                                                }
-                                        //                                            }
-                                        //                                        }
-                                        //                                        tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
-                                        //                                        tbtn.setChecked(true);
-                                        //                                        mTbt1.setTextOn("高");
-                                    } else {
+                                    List outlist = Collections.singletonList(gpio);
+                                    if (Integer.parseInt(text) > 7) {
+
                                         Toast.makeText(MainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
                                         tbtn.setChecked(false);
                                         mTbt1.setTextOff("低");
@@ -597,7 +565,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-        mSSwitch = (Switch) findViewById(R.id.s_switch);
+        mSSwitch = findViewById(R.id.s_switch);
         mSSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -610,6 +578,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -645,7 +614,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 setoutdatas(mBtnSetGpio4, mTbtW4);
                 break;
             case R.id.btn_to_imbox:
-                startActivity(new Intent(this,IMBoxGpioAct.class));
+                startActivity(new Intent(this, IMBoxGpioAct.class));
                 break;
         }
     }
