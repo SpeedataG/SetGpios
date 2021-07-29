@@ -638,33 +638,27 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
     @SuppressLint("WrongConstant")
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(WeightEvent event) {
-        switch (event.getMessage()) {
-            case "":
-                //更新title显示内容
-                mName.setText(SystemProperties.get(SETGPIO_PATH));
+        if ("".equals(event.getMessage())) {//更新title显示内容
+            mName.setText(SystemProperties.get(SETGPIO_PATH));
 
-                try {
+            try {
 
-                    if ("MAIN".equals(getType())) {
-                        deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN);
-                    } else if ("NEW_MAIN".equals(getType())) {
-                        deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN);
-                    } else if ("NEW_MAIN_FG".equals(getType())) {
-                        deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_FG);
-                    } else if ("EXPAND".equals(getType())) {
-                        deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND);
-                    } else if ("EXPAND2".equals(getType())) {
-                        deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND2);
-                    }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if ("MAIN".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN);
+                } else if ("NEW_MAIN".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN);
+                } else if ("NEW_MAIN_FG".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_FG);
+                } else if ("EXPAND".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND);
+                } else if ("EXPAND2".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND2);
                 }
 
-                break;
-            default:
-                break;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -862,7 +856,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
      * 获取gpio状态。原来的和新fg平台不同，可参考工厂测试GPIO测试项
      */
     public List MainGPIO() {
-        BufferedReader reader = null;
+        BufferedReader reader;
         List lists = new ArrayList();
         try {
             if ("MAIN".equals(getType())) {

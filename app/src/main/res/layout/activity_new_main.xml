@@ -48,7 +48,7 @@
                     android:id="@+id/btn_gpio1"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/btn_style"
                     android:text="设置GPIO1" />
 
@@ -56,7 +56,7 @@
                     android:id="@+id/tbt1"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_press_off_false"
                     android:textOff="低"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/btn_style"
                     android:text="设置GPIO2" />
 
@@ -81,7 +81,7 @@
                     android:id="@+id/tbt2"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_press_off_false"
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/btn_style"
                     android:text="设置GPIO3" />
 
@@ -107,7 +107,7 @@
                     android:id="@+id/tbt3"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_press_off_false"
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/btn_style"
                     android:text="设置GPIO4" />
 
@@ -133,7 +133,7 @@
                     android:id="@+id/tbt4"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_press_off_false"
@@ -151,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/btn_style"
                     android:text="设置GPIO5" />
 
@@ -159,7 +159,7 @@
                     android:id="@+id/tbt5"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_press_off_false"

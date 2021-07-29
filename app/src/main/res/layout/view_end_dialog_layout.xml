@@ -7,173 +7,169 @@
     android:background="#80000000"
     tools:ignore="MissingDefaultResource">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/white"
+        android:gravity="start"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/balance_one"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="0dp"
-            android:background="@color/white"
-            android:gravity="start"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="MAIN"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="MAIN"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+        <View
+            android:id="@+id/view_end_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
-            <View
-                android:id="@+id/view_end_line1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <TextView
+            android:id="@+id/balance_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="EXPAND"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="EXPAND"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+        <View
+            android:id="@+id/view_end_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
-            <View
-                android:id="@+id/view_end_line2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <TextView
+            android:id="@+id/balance_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="MAIN_AND_EXPAND"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_three"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="MAIN_AND_EXPAND"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/balance_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="EXPAND2"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_six"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="EXPAND2"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+        <View
+            android:id="@+id/view_end_line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
-            <View
-                android:id="@+id/view_end_line3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <TextView
+            android:id="@+id/balance_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="NEW_MAIN"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_four"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="NEW_MAIN"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+        <View
+            android:id="@+id/view_end_line4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
-            <View
-                android:id="@+id/view_end_line4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <TextView
+            android:id="@+id/balance_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="NEW_MAIN_FG"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/balance_five"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="NEW_MAIN_FG"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
-
-            <View
-                android:id="@+id/view_end_line5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <View
+            android:id="@+id/view_end_line5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color" />
 
 
-            <View
-                android:id="@+id/view_end_line6"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <View
+            android:id="@+id/view_end_line6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
 
-            <TextView
-                android:id="@+id/balance_seven"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="MAIN_AND_EXPAND2"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/balance_seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="MAIN_AND_EXPAND2"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
 
-            <View
-                android:id="@+id/view_end_line7"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bg_color" />
+        <View
+            android:id="@+id/view_end_line7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
 
-            <TextView
-                android:id="@+id/balance_eight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="GAOTONG_MAIN"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/balance_eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="GAOTONG_MAIN"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
 
-            <View
-                android:id="@+id/bottom_line"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <View
+            android:id="@+id/bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
 </android.support.constraint.ConstraintLayout>
 
