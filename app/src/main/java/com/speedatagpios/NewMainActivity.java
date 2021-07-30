@@ -1,5 +1,7 @@
 package com.speedatagpios;
 
+import static com.speedatagpios.ScanConstant.SETGPIO_PATH;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.serialport.DeviceControlSpd;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.speedatagpios.ui.SetWindows;
+import com.speedatagpios.utils.Logcat;
+import com.speedatagpios.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,8 +35,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.speedatagpios.ScanConstant.SETGPIO_PATH;
-
+/**
+ * @author xuyan  新的GPIO调试页面
+ */
 public class NewMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mImageView;
@@ -79,7 +85,9 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mName = findViewById(R.id.title_name);
         mImageView = findViewById(R.id.title_settings);
 
-        mImageView.setOnClickListener(v -> new SetWindows(NewMainActivity.this).showAtLocation(mImageView, Gravity.START, 0, 0));
+        SetWindows setWindows = new SetWindows(NewMainActivity.this);
+
+        mImageView.setOnClickListener(v -> setWindows.showAtLocation(mImageView, Gravity.START, 0, 0));
 
         //注册EventBus
         EventBus.getDefault().register(this);
@@ -91,7 +99,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         initGpioFive();
 
         try {
-            deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN);
+            deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_FG);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,32 +119,32 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 if ("MAIN".equals(getType())) {
                     if (isChecked) {
                         deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("NEW_MAIN".equals(getType()))) {
                     if (isChecked) {
                         deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("EXPAND".equals(getType()))) {
 
                     if (isChecked) {
                         deviceControl.ExpandPowerOn(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.ExpandPowerOff(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -145,24 +153,24 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio1.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio1.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
                 } else if ("NEW_MAIN_FG".equals(getType())) {
-
+                    Logcat.d(isChecked);
                     if (isChecked) {
                         deviceControl.newFgSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newFgSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -170,11 +178,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.Expand2PowerOn(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.Expand2PowerOff(Integer.parseInt(mBtnGpio1.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -183,20 +191,16 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio1.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio1.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
                 }
-
-//                else if ("GAOTONG_MAIN".equals(getType())) {
-//                    //dont do any thing
-//                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -217,32 +221,32 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 if ("MAIN".equals(getType())) {
                     if (isChecked) {
                         deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("NEW_MAIN".equals(getType()))) {
                     if (isChecked) {
                         deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("EXPAND".equals(getType()))) {
 
                     if (isChecked) {
                         deviceControl.ExpandPowerOn(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt1.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.ExpandPowerOff(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -251,12 +255,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio2.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio2.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -264,11 +268,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.newFgSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newFgSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -276,11 +280,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.Expand2PowerOn(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.Expand2PowerOff(Integer.parseInt(mBtnGpio2.getText().toString()));
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -289,20 +293,17 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio2.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio2.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt2.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
                 }
 
-//                else if ("GAOTONG_MAIN".equals(getType())) {
-//
-//                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -323,32 +324,32 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 if ("MAIN".equals(getType())) {
                     if (isChecked) {
                         deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("NEW_MAIN".equals(getType()))) {
                     if (isChecked) {
                         deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("EXPAND".equals(getType()))) {
 
                     if (isChecked) {
                         deviceControl.ExpandPowerOn(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.ExpandPowerOff(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -357,12 +358,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio3.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio3.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -370,11 +371,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.newFgSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newFgSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -382,11 +383,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.Expand2PowerOn(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.Expand2PowerOff(Integer.parseInt(mBtnGpio3.getText().toString()));
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -395,16 +396,14 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio3.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio3.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt3.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
-
-                } else if ("GAOTONG_MAIN".equals(getType())) {
 
                 }
 
@@ -427,32 +426,32 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 if ("MAIN".equals(getType())) {
                     if (isChecked) {
                         deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("NEW_MAIN".equals(getType()))) {
                     if (isChecked) {
                         deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("EXPAND".equals(getType()))) {
 
                     if (isChecked) {
                         deviceControl.ExpandPowerOn(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.ExpandPowerOff(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -461,12 +460,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio4.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio4.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -474,11 +473,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.newFgSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newFgSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -486,11 +485,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.Expand2PowerOn(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.Expand2PowerOff(Integer.parseInt(mBtnGpio4.getText().toString()));
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -499,16 +498,14 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio4.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio4.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt4.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
-
-                } else if ("GAOTONG_MAIN".equals(getType())) {
 
                 }
 
@@ -531,32 +528,32 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 if ("MAIN".equals(getType())) {
                     if (isChecked) {
                         deviceControl.MainPowerOn(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.MainPowerOff(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("NEW_MAIN".equals(getType()))) {
                     if (isChecked) {
                         deviceControl.newSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
                 } else if (("EXPAND".equals(getType()))) {
 
                     if (isChecked) {
                         deviceControl.ExpandPowerOn(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.ExpandPowerOff(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_off_false);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -565,12 +562,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio5.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND, Integer.parseInt(mBtnGpio5.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -578,11 +575,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.newFgSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.newFgSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -590,11 +587,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     if (isChecked) {
                         deviceControl.Expand2PowerOn(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl.Expand2PowerOff(Integer.parseInt(mBtnGpio5.getText().toString()));
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
@@ -603,20 +600,17 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     if (isChecked) {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio5.getText().toString()));
                         deviceControl.PowerOnDevice();
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio5.getText().toString()));
                         deviceControl.PowerOffDevice();
-                        mTbt5.setBackgroundResource(R.drawable.btn_press_on_true);
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
 
                 }
 
-//                else if ("GAOTONG_MAIN".equals(getType())) {
-//
-//                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -669,6 +663,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             default:
                 break;
             case R.id.btn_gpio1:
+
                 if ("EXPAND".equals(getType()) || "EXPAND2".equals(getType())) {
                     setoutdatas(mBtnGpio1, mTbt1);
                 } else {
@@ -703,23 +698,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     setdatas(mBtnGpio5, mTbt5);
                 }
                 break;
-//            case R.id.btn_new_gpio1:
-//                break;
-//            case R.id.btn_set_gpio1:
-//                setoutdatas(mBtnSetGpio1, mTbtW1);
-//                break;
-//            case R.id.btn_set_gpio2:
-//                setoutdatas(mBtnSetGpio2, mTbtW2);
-//                break;
-//            case R.id.btn_set_gpio3:
-//                setoutdatas(mBtnSetGpio3, mTbtW3);
-//                break;
-//            case R.id.btn_set_gpio4:
-//                setoutdatas(mBtnSetGpio4, mTbtW4);
-//                break;
-//            case R.id.btn_to_imbox:
-//                startActivity(new Intent(this, IMBoxGpioAct.class));
-//                break;
+
         }
     }
 
@@ -735,33 +714,62 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     String text = edvCount.getText().toString();
                     if (!"".equals(text)) {
                         btn.setText(text);
-                        //                            btn.setTextColor(Color.RED);
                         List list = MainGPIO();
-                        for (int i = 1; i < list.size(); i++) {
-                            String lists = list.get(i).toString();
-                            String gpio = lists.substring(0, lists.indexOf(":"));
-                            String upordown;
-                            if ("MAIN".equals(getType())) {
-                                upordown = lists.substring(7, 8);
-                            } else {
-                                upordown = lists.substring(8, 9);
-                            }
-                            if (Integer.parseInt(text) == Integer.parseInt(gpio.trim())) {//gpio去空格
-                                if ("1".equals(upordown)) {
-                                    tbtn.setBackgroundResource(R.drawable.btn_press_on_true);
-                                    tbtn.setChecked(true);
-                                    mTbt1.setTextOn("高");
-                                    return;
-                                } else if ("0".equals(upordown)) {
-                                    tbtn.setChecked(false);
-                                    mTbt1.setTextOff("低");
-                                    tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
-                                    return;
+
+                        if ("NEW_MAIN_FG".equals(getType())) {
+                            //从第三行正式开始
+                            for (int i = 2; i < list.size(); i++) {
+                                String lists = list.get(i).toString();
+                                String gpio = lists.substring(0, lists.indexOf(":"));
+                                String upordown;
+                                if ("MAIN".equals(getType())) {
+                                    upordown = lists.substring(7, 8);
                                 } else {
-                                    Toast.makeText(NewMainActivity.this, "这是拓展GPIO 请连接拓展设备！", Toast.LENGTH_SHORT).show();
+                                    upordown = lists.substring(8, 9);
+                                    Logcat.d(lists);
+                                    Logcat.d(upordown);
+                                }
+                                if (Integer.parseInt(text) == Integer.parseInt(gpio.trim())) {//gpio去空格
+                                    if ("1".equals(upordown)) {
+                                        tbtn.setBackgroundResource(R.drawable.ic_switch_high);
+                                        tbtn.setChecked(true);
+                                        return;
+                                    } else if ("0".equals(upordown)) {
+                                        tbtn.setChecked(false);
+                                        tbtn.setBackgroundResource(R.drawable.ic_switch_off);
+                                        return;
+                                    } else {
+                                        Toast.makeText(NewMainActivity.this, "这是拓展GPIO 请连接拓展设备！", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        } else {
+                            for (int i = 1; i < list.size(); i++) {
+                                String lists = list.get(i).toString();
+                                String gpio = lists.substring(0, lists.indexOf(":"));
+                                String upordown;
+                                if ("MAIN".equals(getType())) {
+                                    upordown = lists.substring(7, 8);
+                                } else {
+                                    upordown = lists.substring(8, 9);
+                                }
+                                if (Integer.parseInt(text) == Integer.parseInt(gpio.trim())) {//gpio去空格
+                                    if ("1".equals(upordown)) {
+                                        tbtn.setBackgroundResource(R.drawable.ic_switch_high);
+                                        tbtn.setChecked(true);
+                                        return;
+                                    } else if ("0".equals(upordown)) {
+                                        tbtn.setChecked(false);
+                                        tbtn.setBackgroundResource(R.drawable.ic_switch_off);
+                                        return;
+                                    } else {
+                                        Toast.makeText(NewMainActivity.this, "这是拓展GPIO 请连接拓展设备！", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         }
+
+
                     } else {
                         Toast.makeText(NewMainActivity.this, "请设置GPIO", Toast.LENGTH_SHORT).show();
                     }
@@ -778,15 +786,14 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     String text = edvCount.getText().toString();
                     if (!"".equals(text)) {
                         btn.setText(text);
-                        //                            btn.setTextColor(Color.RED);
+
                         String[] split;
                         try {
                             split = OutGPIO().split("");
                             if ("0xEA".equals(split[1])) {
                                 Toast.makeText(NewMainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
                                 tbtn.setChecked(false);
-                                mTbt1.setTextOff("低");
-                                tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                             } else {
 
                                 if (Integer.parseInt(text) > 7) {
@@ -797,8 +804,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                             if ("234".equals(OutGPIO())) {
                                 Toast.makeText(NewMainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
                                 tbtn.setChecked(false);
-                                mTbt1.setTextOff("低");
-                                tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                             } else {
                                 if ("".equals(OutGPIO())) {
                                     return;
@@ -809,16 +815,14 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                                     Toast.makeText(NewMainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
                                     tbtn.setChecked(false);
-                                    mTbt1.setTextOff("低");
-                                    tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
+                                    tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                                 }
                             }
                         }
 
                     } else {
                         tbtn.setChecked(false);
-                        mTbt1.setTextOff("低");
-                        tbtn.setBackgroundResource(R.drawable.btn_press_off_false);
+                        tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                         Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
                     }
                 }).setNegativeButton("取消", null).show();
@@ -963,8 +967,42 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         return lists;
     }
 
+
+    //返回键监听
+    private long mkeyTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+            case KeyEvent.ACTION_DOWN:
+                if ((System.currentTimeMillis() - mkeyTime) > 2000) {
+                    mkeyTime = System.currentTimeMillis();
+                    boolean cn = "CN".equals(getApplicationContext().getResources().getConfiguration().locale.getCountry());
+                    if (cn) {
+                        ToastUtils.showShortToastSafe("再次点击返回退出");
+                    } else {
+                        ToastUtils.showShortToastSafe("Press the exit again");
+                    }
+                } else {
+                    try {
+                        finish();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                return false;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
     @Override
     protected void onDestroy() {
+
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }

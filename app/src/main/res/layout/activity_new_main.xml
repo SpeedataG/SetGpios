@@ -30,42 +30,54 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="GPIO"
-                android:textSize="17sp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center"
+                android:text="默认NEW_MAIN_FG,点击左上角展开选择栏"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio1"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/btn_style"
-                    android:text="设置GPIO1" />
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="设置GPIO1"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt1"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_press_off_false"
-                    android:textOff="低"
-                    android:textOn="高" />
+                    android:background="@drawable/ic_switch_new_main"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_one"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <Button
@@ -73,25 +85,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/btn_style"
-                    android:text="设置GPIO2" />
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="设置GPIO2"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt2"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_press_off_false"
-                    android:textOff="低"
-                    android:textOn="高" />
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_two"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <Button
@@ -99,25 +120,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/btn_style"
-                    android:text="设置GPIO3" />
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="设置GPIO3"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt3"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_press_off_false"
-                    android:textOff="低"
-                    android:textOn="高" />
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_three"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <Button
@@ -125,25 +155,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/btn_style"
-                    android:text="设置GPIO4" />
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="设置GPIO4"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt4"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_press_off_false"
-                    android:textOff="低"
-                    android:textOn="高" />
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_four"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <Button
@@ -151,21 +190,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/btn_style"
-                    android:text="设置GPIO5" />
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="设置GPIO5"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt5"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_press_off_false"
-                    android:textOff="低"
-                    android:textOn="高" />
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_five"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
         </LinearLayout>
     </ScrollView>
 

@@ -8,6 +8,7 @@
     <color name="green">#03f70c</color>
     <color name="dgreen">#1ea123</color>
     <color name="black">#090a09</color>
+    <color name="black_menu_title">#353535</color>
     <color name="white">#ffffff</color>
     <color name="title_color">#167c64</color>
     <color name="xitongbiaoti">#0a715f</color>
@@ -53,6 +54,7 @@
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorGray">#FFF0F0F0</color>
     <color name="colorBlue">#FF0A86F7</color>
+    <color name="colorBlueMenu">#FF0F81FF</color>
     <color name="colorDialogBlue">#FF0A86F7</color>
     <color name="colorDialogBlack">#FF191B26</color>
     <color name="colorDialogGray">#FF7A7F91</color>

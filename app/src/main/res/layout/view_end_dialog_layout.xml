@@ -9,10 +9,10 @@
 
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:background="@color/white"
         android:gravity="start"
@@ -21,16 +21,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <TextView
+            android:id="@+id/balance_title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="类型列表"
+            android:textColor="@color/black_menu_title"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:id="@+id/view_end_line_title"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_color" />
+
         <TextView
             android:id="@+id/balance_one"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:gravity="start|center"
             android:text="MAIN"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/color_tab_choose_un"
+            android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
         <View
@@ -42,13 +64,14 @@
         <TextView
             android:id="@+id/balance_two"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:gravity="start|center"
             android:text="EXPAND"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/color_tab_choose_un"
+            android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
         <View
@@ -57,29 +80,18 @@
             android:layout_height="1dp"
             android:background="@color/bg_color" />
 
+
         <TextView
             android:id="@+id/balance_three"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="MAIN_AND_EXPAND"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="gone"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/balance_six"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:gravity="start|center"
             android:text="EXPAND2"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/color_tab_choose_un"
+            android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
         <View
@@ -91,13 +103,14 @@
         <TextView
             android:id="@+id/balance_four"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:gravity="start|center"
             android:text="NEW_MAIN"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/color_tab_choose_un"
+            android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
         <View
@@ -109,63 +122,24 @@
         <TextView
             android:id="@+id/balance_five"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:gravity="start|center"
             android:text="NEW_MAIN_FG"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/color_tab_choose_un"
+            android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
         <View
             android:id="@+id/view_end_line5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_color" />
-
-
-        <View
-            android:id="@+id/view_end_line6"
-            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/bg_color" />
 
-
-        <TextView
-            android:id="@+id/balance_seven"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="MAIN_AND_EXPAND2"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="gone"
-            tools:ignore="HardcodedText" />
-
         <View
-            android:id="@+id/view_end_line7"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/bg_color" />
-
-        <TextView
-            android:id="@+id/balance_eight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="GAOTONG_MAIN"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="gone"
-            tools:ignore="HardcodedText" />
-
-        <View
-            android:id="@+id/bottom_line"
+            android:id="@+id/bottom_space"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
