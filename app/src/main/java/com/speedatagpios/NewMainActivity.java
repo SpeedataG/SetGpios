@@ -620,7 +620,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
 
     private String getType() {
-        return SystemProperties.get(SETGPIO_PATH, "NEW_MAIN");
+        return SystemProperties.get(SETGPIO_PATH, "NEW_MAIN_FG");
     }
 
 
