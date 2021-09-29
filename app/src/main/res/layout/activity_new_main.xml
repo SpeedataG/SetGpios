@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center"
-                android:text="默认NEW_MAIN_FG,点击左上角展开选择栏"
+                android:text="@string/default_n"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
@@ -53,7 +53,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="10"
                     android:background="@color/white"
-                    android:text="设置GPIO1"
+                    android:text="@string/set_1"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 
@@ -63,7 +63,7 @@
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ic_switch_new_main"
+                    android:background="@drawable/ic_switch_off"
                     android:textOff=""
                     android:textOn="" />
             </LinearLayout>
@@ -87,7 +87,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="10"
                     android:background="@color/white"
-                    android:text="设置GPIO2"
+                    android:text="@string/set_2"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 
@@ -122,7 +122,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="10"
                     android:background="@color/white"
-                    android:text="设置GPIO3"
+                    android:text="@string/set_3"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 
@@ -157,7 +157,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="10"
                     android:background="@color/white"
-                    android:text="设置GPIO4"
+                    android:text="@string/set_4"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 
@@ -192,7 +192,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="10"
                     android:background="@color/white"
-                    android:text="设置GPIO5"
+                    android:text="@string/set_5"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 

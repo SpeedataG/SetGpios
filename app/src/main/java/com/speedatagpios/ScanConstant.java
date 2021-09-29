@@ -1,20 +1,15 @@
 package com.speedatagpios;
 
 
+/**
+ * @author xuyan 常量
+ */
 public class ScanConstant {
 
 
     /**
-     * 补光灯的变化频率
+     * 存放路径名的系统属性
      */
     public static final String SETGPIO_PATH = "persist.setgpio.path";
-
-    /**
-     * 连续扫描后变化延时频率
-     */
-    public static final String DELAY_DURATION = "persist.setgpio.delayduration";
-
-
-
 
 }

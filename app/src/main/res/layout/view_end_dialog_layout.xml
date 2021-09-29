@@ -38,7 +38,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:text="类型列表"
+                android:text="@string/type_list"
                 android:textColor="@color/black_menu_title"
                 android:textSize="18sp"
                 tools:ignore="HardcodedText" />

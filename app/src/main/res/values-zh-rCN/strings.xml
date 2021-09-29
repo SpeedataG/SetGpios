@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">SpeedataGPIOS</string>
+    <string name="title_activity_new_main">NewMainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="set_gpio">设置GPIO</string>
+    <string name="please_set">请设置GPIO值！</string>
+    <string name="set_value">设置GPIO值</string>
+    <string name="sure">确定</string>
+    <string name="this_is_the">这是拓展GPIO 请连接拓展设备！</string>
+    <string name="cancel">取消</string>
+    <string name="please_set_gpio">请设置GPIO</string>
+    <string name="please_connect_the">请连接拓展设备,再设置GPIO！</string>
+    <string name="please_set_the_correct">请设置正确的GPIO(0~7)</string>
+    <string name="please_set_a">请设置0—7数值</string>
+    <string name="type_list">类型列表</string>
+    <string name="default_n">默认NEW_MAIN_FG,点击左上角展开选择栏</string>
+    <string name="set_1">设置GPIO1</string>
+    <string name="set_2">设置GPIO2</string>
+    <string name="set_3">设置GPIO3</string>
+    <string name="set_4">设置GPIO4</string>
+    <string name="set_5">设置GPIO5</string>
+
+
+</resources>

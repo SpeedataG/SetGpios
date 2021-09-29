@@ -112,8 +112,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mTbt1 = findViewById(R.id.tbt1);
         mTbt1.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                if (mBtnGpio1.getText().toString().contains("设置GPIO")) {
-                    Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                if (mBtnGpio1.getText().toString().contains(getString(R.string.set_1))) {
+                    Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if ("MAIN".equals(getType())) {
@@ -214,8 +214,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mTbt2 = findViewById(R.id.tbt2);
         mTbt2.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                if (mBtnGpio2.getText().toString().contains("设置GPIO")) {
-                    Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                if (mBtnGpio2.getText().toString().contains(getString(R.string.set_2))) {
+                    Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if ("MAIN".equals(getType())) {
@@ -317,8 +317,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mTbt3 = findViewById(R.id.tbt3);
         mTbt3.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                if (mBtnGpio3.getText().toString().contains("设置GPIO")) {
-                    Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                if (mBtnGpio3.getText().toString().contains(getString(R.string.set_3))) {
+                    Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if ("MAIN".equals(getType())) {
@@ -419,8 +419,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mTbt4 = findViewById(R.id.tbt4);
         mTbt4.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                if (mBtnGpio4.getText().toString().contains("设置GPIO")) {
-                    Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                if (mBtnGpio4.getText().toString().contains(getString(R.string.set_4))) {
+                    Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if ("MAIN".equals(getType())) {
@@ -521,8 +521,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         mTbt5 = findViewById(R.id.tbt5);
         mTbt5.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                if (mBtnGpio5.getText().toString().contains("设置GPIO")) {
-                    Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                if (mBtnGpio5.getText().toString().contains(getString(R.string.set_5))) {
+                    Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if ("MAIN".equals(getType())) {
@@ -709,8 +709,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
     public void setdatas(final Button btn, final ToggleButton tbtn) {
         final EditText edvCount = new EditText(NewMainActivity.this);
         edvCount.setInputType(InputType.TYPE_CLASS_NUMBER);
-        new AlertDialog.Builder(NewMainActivity.this).setTitle("设置GPIO值").setView(edvCount)
-                .setPositiveButton("确定", (dialog, which) -> {
+        new AlertDialog.Builder(NewMainActivity.this).setTitle(R.string.set_value).setView(edvCount)
+                .setPositiveButton(R.string.sure, (dialog, which) -> {
                     String text = edvCount.getText().toString();
                     if (!"".equals(text)) {
                         btn.setText(text);
@@ -739,7 +739,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                         tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                                         return;
                                     } else {
-                                        Toast.makeText(NewMainActivity.this, "这是拓展GPIO 请连接拓展设备！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
@@ -763,7 +763,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                         tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                                         return;
                                     } else {
-                                        Toast.makeText(NewMainActivity.this, "这是拓展GPIO 请连接拓展设备！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
@@ -771,18 +771,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
 
                     } else {
-                        Toast.makeText(NewMainActivity.this, "请设置GPIO", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewMainActivity.this, R.string.please_set_gpio, Toast.LENGTH_SHORT).show();
                     }
-                }).setNegativeButton("取消", null).show();
+                }).setNegativeButton(R.string.cancel, null).show();
     }
 
 
     public void setoutdatas(final Button btn, final ToggleButton tbtn) {
         final EditText edvCount = new EditText(NewMainActivity.this);
-        edvCount.setHint("请设置0--7数值");
+        edvCount.setHint(R.string.please_set_a);
         edvCount.setInputType(InputType.TYPE_CLASS_NUMBER);
-        new AlertDialog.Builder(NewMainActivity.this).setTitle("设置GPIO值").setView(edvCount)
-                .setPositiveButton("确定", (dialog, which) -> {
+        new AlertDialog.Builder(NewMainActivity.this).setTitle(R.string.set_value).setView(edvCount)
+                .setPositiveButton(R.string.sure, (dialog, which) -> {
                     String text = edvCount.getText().toString();
                     if (!"".equals(text)) {
                         btn.setText(text);
@@ -791,18 +791,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             split = OutGPIO().split("");
                             if ("0xEA".equals(split[1])) {
-                                Toast.makeText(NewMainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NewMainActivity.this, R.string.please_connect_the, Toast.LENGTH_SHORT).show();
                                 tbtn.setChecked(false);
                                 tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                             } else {
 
                                 if (Integer.parseInt(text) > 7) {
-                                    Toast.makeText(NewMainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(NewMainActivity.this, R.string.please_set_the_correct, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (Exception e) {
                             if ("234".equals(OutGPIO())) {
-                                Toast.makeText(NewMainActivity.this, "请连接拓展设备,在设置GPIO！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NewMainActivity.this, R.string.please_connect_the, Toast.LENGTH_SHORT).show();
                                 tbtn.setChecked(false);
                                 tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                             } else {
@@ -813,7 +813,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                 List outlist = Collections.singletonList(gpio);
                                 if (Integer.parseInt(text) > 7) {
 
-                                    Toast.makeText(NewMainActivity.this, "请设置正确的GPIO(0~7)", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(NewMainActivity.this, R.string.please_set_the_correct, Toast.LENGTH_SHORT).show();
                                     tbtn.setChecked(false);
                                     tbtn.setBackgroundResource(R.drawable.ic_switch_off);
                                 }
@@ -823,9 +823,9 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         tbtn.setChecked(false);
                         tbtn.setBackgroundResource(R.drawable.ic_switch_off);
-                        Toast.makeText(NewMainActivity.this, "请设置GPIO值！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewMainActivity.this, R.string.please_set, Toast.LENGTH_SHORT).show();
                     }
-                }).setNegativeButton("取消", null).show();
+                }).setNegativeButton(R.string.cancel, null).show();
     }
 
     public String OutGPIO() {
@@ -842,7 +842,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        String line = null;
+        String line;
         try {
             for (int i = 0; i < 8; i++) {
                 if ((line = reader.readLine()) != null) {
@@ -865,7 +865,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         try {
             if ("MAIN".equals(getType())) {
                 reader = new BufferedReader(new FileReader("sys/class/misc/mtgpio/pin"));
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -878,7 +878,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("NEW_MAIN".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/bus/platform/drivers/mediatek-pinctrl/10005000.pinctrl/mt_gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 163; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -892,7 +892,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("NEW_MAIN_FG".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/devices/platform/pinctrl/mt_gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -906,7 +906,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("EXPAND".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/class/misc/aw9523/gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -920,7 +920,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("MAIN_AND_EXPAND".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/class/misc/aw9523/gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -934,7 +934,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("EXPAND2".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/class/misc/aw9524/gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {
@@ -948,7 +948,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             } else if ("MAIN_AND_EXPAND2".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/class/misc/aw9524/gpio"));
 
-                String line = null;
+                String line;
                 try {
                     for (int i = 1; i < 203; i++) {
                         if ((line = reader.readLine()) != null) {

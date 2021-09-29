@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SpeedataGPIOS</string>
     <string name="title_activity_new_main">NewMainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -11,4 +11,23 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="set_gpio">Set up GPIO</string>
+    <string name="please_set">Please set the GPIO value!</string>
+    <string name="set_value">Set GPIO value</string>
+    <string name="sure">Sure</string>
+    <string name="this_is_the">This is the expansion GPIO, please connect the expansion device!</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_set_gpio">Please set GPIO</string>
+    <string name="please_connect_the">Please connect the expansion device, and then set the GPIO!</string>
+    <string name="please_set_the_correct">Please set the correct GPIO (0~7)</string>
+    <string name="please_set_a">Please set a value of 0–7</string>
+    <string name="type_list">Type list</string>
+    <string name="default_n">Default NEW_MAIN_FG, click the upper left corner to expand the selection bar</string>
+    <string name="set_1" tools:ignore="Typos">Set GPIO1</string>
+    <string name="set_2">Set GPIO2</string>
+    <string name="set_3">Set GPIO3</string>
+    <string name="set_4">Set GPIO4</string>
+    <string name="set_5">Set GPIO5</string>
+
+
 </resources>
