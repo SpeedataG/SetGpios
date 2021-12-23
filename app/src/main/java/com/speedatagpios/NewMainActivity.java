@@ -200,6 +200,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -298,6 +310,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio2.getText().toString()));
                         deviceControl.PowerOffDevice();
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
                         mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
@@ -405,6 +429,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -503,6 +539,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_AND_EXPAND2, Integer.parseInt(mBtnGpio4.getText().toString()));
                         deviceControl.PowerOffDevice();
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
                         mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
@@ -609,6 +657,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
@@ -647,6 +707,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND);
                 } else if ("EXPAND2".equals(getType())) {
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND2);
+                } else if ("NEW_MAIN_SC".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_SC);
                 }
 
 
@@ -716,7 +778,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         btn.setText(text);
                         List list = MainGPIO();
 
-                        if ("NEW_MAIN_FG".equals(getType())) {
+                        if ("NEW_MAIN_FG".equals(getType()) || "NEW_MAIN_SC".equals(getType())) {
                             //从第三行正式开始
                             for (int i = 2; i < list.size(); i++) {
                                 String lists = list.get(i).toString();
@@ -947,6 +1009,20 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
             } else if ("MAIN_AND_EXPAND2".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/class/misc/aw9524/gpio"));
+
+                String line;
+                try {
+                    for (int i = 1; i < 203; i++) {
+                        if ((line = reader.readLine()) != null) {
+                            lists.add(line);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else if ("NEW_MAIN_SC".equals(getType())) {
+                reader = new BufferedReader(new FileReader("/sys/devices/platform/pinctrl@1000b000/mt_gpio"));
 
                 String line;
                 try {
