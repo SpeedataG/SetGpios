@@ -130,7 +130,7 @@ public class SetWindows extends PopupWindow {
         });
 
 
-        mFive.setOnClickListener(v -> {
+        mSix.setOnClickListener(v -> {
 
             mOne.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mTwo.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
