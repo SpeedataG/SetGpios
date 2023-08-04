@@ -1,5 +1,6 @@
 package com.speedatagpios;
 
+import static android.serialport.DeviceControlSpd.POWER_ZHANRUI;
 import static com.speedatagpios.ScanConstant.SETGPIO_PATH;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.os.SystemProperties;
 import android.serialport.DeviceControlSpd;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,15 +30,19 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * @author xuyan  新的GPIO调试页面
+ * 添加展锐平台
  */
 public class NewMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -212,6 +218,19 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zhanruiSetDirection(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        deviceControl.zhanruiSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zhanruiSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -322,6 +341,19 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     } else {
                         deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zhanruiSetDirection(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        deviceControl.zhanruiSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zhanruiSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
                         mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
 
                     }
@@ -441,6 +473,19 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zhanruiSetDirection(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        deviceControl.zhanruiSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zhanruiSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -547,6 +592,19 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     Logcat.d(isChecked);
                     if (isChecked) {
                         deviceControl.newScSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zhanruiSetDirection(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        deviceControl.zhanruiSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
                         mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
 
                     } else {
@@ -669,6 +727,19 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zhanruiSetDirection(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        deviceControl.zhanruiSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.newScSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
@@ -709,6 +780,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.EXPAND2);
                 } else if ("NEW_MAIN_SC".equals(getType())) {
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_SC);
+                } else if ("ZHANRUI_MAIN".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.ZHANRUI_MAIN);
                 }
 
 
@@ -804,6 +877,25 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
+                        } else if ("ZHANRUI_MAIN".equals(getType())) {
+                            //读高还是低,直接读value值是1还是0。
+                            String path = POWER_ZHANRUI + "/gpio" + (Integer.parseInt(text) + 64) + "/" + "value";
+                            InputStream inputStream;
+                            try {
+                                inputStream = new FileInputStream(path);
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                            String result = convertStreamToString(inputStream);
+                            if ("1".equals(result)) {
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_high);
+                                tbtn.setChecked(true);
+                            } else if ("0".equals(result)) {
+                                tbtn.setChecked(false);
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_off);
+                            } else {
+                                Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             for (int i = 1; i < list.size(); i++) {
@@ -1043,6 +1135,43 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         return lists;
     }
 
+    public String zhanruiPower(String path) {
+        String result = "";
+        try {
+            Log.d("xuyanshuai", "zhanruiPower");
+            BufferedReader CtrlFile = new BufferedReader(new FileReader(path));
+            result = CtrlFile.readLine();
+            CtrlFile.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String convertStreamToString(InputStream is) {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
 
     //返回键监听
     private long mkeyTime = 0;
