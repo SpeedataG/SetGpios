@@ -41,6 +41,7 @@
                 android:text="@string/type_list"
                 android:textColor="@color/black_menu_title"
                 android:textSize="18sp"
+                android:visibility="gone"
                 tools:ignore="HardcodedText" />
 
             <View
@@ -172,7 +173,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="start|center"
-                android:text="ZHANRUI_MAIN"
+                android:text="MAIN_ZR"
                 android:textColor="@color/color_tab_choose_un"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText" />
@@ -183,10 +184,29 @@
                 android:layout_height="1dp"
                 android:background="@color/bg_color" />
 
+            <TextView
+                android:id="@+id/balance_eight"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="start|center"
+                android:text="MAIN_RK"
+                android:textColor="@color/color_tab_choose_un"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:id="@+id/view_end_line8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
+
             <View
                 android:id="@+id/bottom_space"
                 android:layout_width="match_parent"
-                android:layout_height="210dp" />
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </ScrollView>

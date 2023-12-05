@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author xuyan  新界面
+ * @author xuyan  旧界面  当前弃用
  */
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String MAIN_GPIO = "sys/class/misc/mtgpio/pin";
