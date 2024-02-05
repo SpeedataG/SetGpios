@@ -1,13 +1,20 @@
 apply plugin: 'com.android.application'
 
+//获取时间戳
+static def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.speedatagpios"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 9
-        versionName "1.8"
+        versionCode 10
+        versionName "2.0-" + getDate()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

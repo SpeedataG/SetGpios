@@ -19,8 +19,8 @@
     <string name="cancel">Cancel</string>
     <string name="please_set_gpio">Please set GPIO</string>
     <string name="please_connect_the">Please connect the expansion device, and then set the GPIO!</string>
-    <string name="please_set_the_correct">Please set the correct GPIO (0~7)</string>
-    <string name="please_set_a">Please set a value of 0–7</string>
+    <string name="please_set_the_correct">Please set the correct GPIO (0~15)</string>
+    <string name="please_set_a">Please set a value of 0–15</string>
     <string name="type_list">Type list</string>
     <string name="default_n">Default NEW_MAIN_FG, click the upper left corner to expand the selection bar</string>
     <string name="set_1" tools:ignore="Typos">Set GPIO1</string>
@@ -28,6 +28,9 @@
     <string name="set_3">Set GPIO3</string>
     <string name="set_4">Set GPIO4</string>
     <string name="set_5">Set GPIO5</string>
+    <string name="set_6">Set GPIO6</string>
+    <string name="set_7">Set GPIO7</string>
+    <string name="set_8">Set GPIO8</string>
 
 
 </resources>

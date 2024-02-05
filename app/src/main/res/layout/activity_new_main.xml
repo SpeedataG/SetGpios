@@ -26,10 +26,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
             android:background="@color/bg_color"
             android:orientation="vertical">
 
@@ -37,31 +37,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center"
+                android:gravity="center"
+                android:minHeight="48dp"
                 android:text="@string/default_n"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio1"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="10"
                     android:background="@color/white"
                     android:text="@string/set_1"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt1"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/ic_switch_off"
                     android:textOff=""
@@ -77,26 +86,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio2"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="10"
                     android:background="@color/white"
                     android:text="@string/set_2"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt2"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/ic_switch_off"
                     android:textOff=""
@@ -112,26 +126,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio3"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="10"
                     android:background="@color/white"
                     android:text="@string/set_3"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt3"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/ic_switch_off"
                     android:textOff=""
@@ -147,26 +166,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio4"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="10"
                     android:background="@color/white"
                     android:text="@string/set_4"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt4"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/ic_switch_off"
                     android:textOff=""
@@ -182,26 +206,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_gpio5"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="10"
                     android:background="@color/white"
                     android:text="@string/set_5"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <ToggleButton
                     android:id="@+id/tbt5"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/ic_switch_off"
                     android:textOff=""
@@ -210,6 +239,126 @@
 
             <View
                 android:id="@+id/view_end_line_five"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_gpio6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="@string/set_6"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+                <ToggleButton
+                    android:id="@+id/tbt6"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_six"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_gpio7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="@string/set_7"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+                <ToggleButton
+                    android:id="@+id/tbt7"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_seven"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_gpio8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="10"
+                    android:background="@color/white"
+                    android:text="@string/set_8"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+                <ToggleButton
+                    android:id="@+id/tbt8"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_switch_off"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_end_line_eight"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/bg_color" />

@@ -19,8 +19,8 @@
     <string name="cancel">取消</string>
     <string name="please_set_gpio">请设置GPIO</string>
     <string name="please_connect_the">请连接拓展设备,再设置GPIO！</string>
-    <string name="please_set_the_correct">请设置正确的GPIO(0~7)</string>
-    <string name="please_set_a">请设置0—7数值</string>
+    <string name="please_set_the_correct">请设置正确的GPIO(0~15)</string>
+    <string name="please_set_a">请设置0—15数值</string>
     <string name="type_list">类型列表</string>
     <string name="default_n">默认NEW_MAIN_FG,点击左上角展开选择栏</string>
     <string name="set_1">设置GPIO1</string>
@@ -28,6 +28,9 @@
     <string name="set_3">设置GPIO3</string>
     <string name="set_4">设置GPIO4</string>
     <string name="set_5">设置GPIO5</string>
+    <string name="set_6">设置GPIO6</string>
+    <string name="set_7">设置GPIO7</string>
+    <string name="set_8">设置GPIO8</string>
 
 
 </resources>
