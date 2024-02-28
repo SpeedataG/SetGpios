@@ -10,7 +10,6 @@ import android.os.SystemProperties;
 import android.serialport.DeviceControlSpd;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -1370,7 +1369,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
 
     /**
-     * 判断状态，当前仅为原判断，新的FG需要参考工厂测试
+     * 判断状态，mtk读取Din
      */
     public void setdatas(final Button btn, final ToggleButton tbtn) {
         final EditText edvCount = new EditText(NewMainActivity.this);
@@ -1392,13 +1391,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                 String lists = list.get(i).toString();
                                 String gpio = lists.substring(0, lists.indexOf(":"));
                                 String upordown;
-                                if ("MAIN".equals(getType())) {
-                                    upordown = lists.substring(7, 8);
-                                } else {
-                                    upordown = lists.substring(8, 9);
-                                    Logcat.d(lists);
-                                    Logcat.d(upordown);
-                                }
+
+                                upordown = lists.substring(8, 9);
+                                Logcat.d(lists);
+                                Logcat.d(upordown);
+
                                 if (Integer.parseInt(text) == Integer.parseInt(gpio.trim())) {//gpio去空格
                                     if ("1".equals(upordown)) {
                                         tbtn.setBackgroundResource(R.drawable.ic_switch_high);
@@ -1485,6 +1482,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
+    /**
+     * 初始读一下拓展gpio
+     *
+     * @param btn  按钮
+     * @param tbtn 状态
+     */
     public void setoutdatas(final Button btn, final ToggleButton tbtn) {
         final EditText edvCount = new EditText(NewMainActivity.this);
         edvCount.setHint(R.string.please_set_a);
@@ -1536,6 +1539,11 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 }).setNegativeButton(R.string.cancel, null).show();
     }
 
+    /**
+     * 外部拓展 aw9523
+     *
+     * @return 读的值
+     */
     public String OutGPIO() {
         BufferedReader reader;
         try {
@@ -1566,6 +1574,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
     /**
      * 获取gpio状态。原来的和新fg平台不同，可参考工厂测试GPIO测试项
+     * 拉取长列表，相当于adb shell指令cat路径的结果
      */
     public List MainGPIO() {
         BufferedReader reader;
@@ -1689,19 +1698,6 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         return lists;
     }
 
-    public String zhanruiPower(String path) {
-        String result = "";
-        try {
-            Log.d("xuyanshuai", "zhanruiPower");
-            BufferedReader CtrlFile = new BufferedReader(new FileReader(path));
-            result = CtrlFile.readLine();
-            CtrlFile.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 
     public String convertStreamToString(InputStream is) {
 
