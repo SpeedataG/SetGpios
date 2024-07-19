@@ -127,7 +127,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         try {
             deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_FG);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("new DeviceControlSpd:" + e.getMessage());
         }
 
     }
@@ -264,10 +264,22 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -404,11 +416,23 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -545,10 +569,22 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -685,10 +721,22 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -825,11 +873,23 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -966,11 +1026,23 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio6.getText().toString()));
+                        mTbt6.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio6.getText().toString()));
+                        mTbt6.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -1107,11 +1179,23 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio7.getText().toString()));
+                        mTbt7.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio7.getText().toString()));
+                        mTbt7.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -1248,11 +1332,23 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio8.getText().toString()));
+                        mTbt8.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio8.getText().toString()));
+                        mTbt8.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
     }
@@ -1291,11 +1387,13 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_ZR);
                 } else if ("MAIN_RK".equals(getType())) {
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_RK);
+                } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_ZR_LIBGPIOD);
                 }
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -1381,7 +1479,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         new AlertDialog.Builder(NewMainActivity.this).setTitle(R.string.set_value).setView(edvCount)
                 .setPositiveButton(R.string.sure, (dialog, which) -> {
                     String text = edvCount.getText().toString();
-                    if (!"".equals(text)) {
+                    if (!text.isEmpty()) {
                         btn.setText(text);
                         List list = MainGPIO();
 
@@ -1429,6 +1527,9 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                             } else {
                                 Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
                             }
+                        } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                            //不读，没法判断，读的也大概率是不能用来判断的。
+                            //Toast.makeText(NewMainActivity.this, R.string.libgpiod, Toast.LENGTH_SHORT).show();
                         } else if ("MAIN_RK".equals(getType())) {
                             //读高还是低,直接读value值是1还是0。
                             String path = POWER_ZHANRUI + "/gpio" + text + "/" + "value";
@@ -1495,7 +1596,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
         new AlertDialog.Builder(NewMainActivity.this).setTitle(R.string.set_value).setView(edvCount)
                 .setPositiveButton(R.string.sure, (dialog, which) -> {
                     String text = edvCount.getText().toString();
-                    if (!"".equals(text)) {
+                    if (!text.isEmpty()) {
                         btn.setText(text);
 
                         String[] split;
@@ -1521,7 +1622,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                                     return;
                                 }
                                 String gpio = Integer.toBinaryString(Integer.parseInt(OutGPIO()));
-                                List outlist = Collections.singletonList(gpio);
+                                List<String> outlist = Collections.singletonList(gpio);
                                 if (Integer.parseInt(text) > 15) {
 
                                     Toast.makeText(NewMainActivity.this, R.string.please_set_the_correct, Toast.LENGTH_SHORT).show();
@@ -1554,7 +1655,6 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return "";
         }
         StringBuilder sb = new StringBuilder();
@@ -1566,7 +1666,6 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
             return "";
         }
         return sb.toString();
@@ -1590,7 +1689,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
             } else if ("NEW_MAIN".equals(getType())) {
                 reader = new BufferedReader(new FileReader("/sys/bus/platform/drivers/mediatek-pinctrl/10005000.pinctrl/mt_gpio"));
@@ -1603,7 +1702,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("NEW_MAIN_FG".equals(getType())) {
@@ -1617,7 +1716,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("EXPAND".equals(getType())) {
@@ -1631,7 +1730,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("MAIN_AND_EXPAND".equals(getType())) {
@@ -1645,7 +1744,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("EXPAND2".equals(getType())) {
@@ -1659,7 +1758,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("MAIN_AND_EXPAND2".equals(getType())) {
@@ -1673,7 +1772,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             } else if ("NEW_MAIN_SC".equals(getType())) {
@@ -1687,12 +1786,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("读取失败");
                 }
 
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("读取失败");
         }
 
         return lists;
@@ -1712,12 +1811,12 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } finally {
             try {
                 is.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         return sb.toString();
@@ -1744,7 +1843,7 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     try {
                         finish();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.out.println("finish error");
                     }
                 }
                 return false;

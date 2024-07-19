@@ -31,6 +31,6 @@
     <string name="set_6">设置GPIO6</string>
     <string name="set_7">设置GPIO7</string>
     <string name="set_8">设置GPIO8</string>
-
+    <string name="libgpiod">libgpiod不支持读取</string>
 
 </resources>

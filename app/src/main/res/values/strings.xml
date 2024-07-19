@@ -31,6 +31,7 @@
     <string name="set_6">Set GPIO6</string>
     <string name="set_7">Set GPIO7</string>
     <string name="set_8">Set GPIO8</string>
+    <string name="libgpiod">Libgpiod does not support reading</string>
 
 
 </resources>

@@ -48,6 +48,7 @@ public class SetWindows extends PopupWindow {
         TextView mSix = popupView.findViewById(R.id.balance_six);
         TextView mSeven = popupView.findViewById(R.id.balance_seven);
         TextView mEight = popupView.findViewById(R.id.balance_eight);
+        TextView mNine = popupView.findViewById(R.id.balance_nine);
 
         mOne.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
         mTwo.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
@@ -57,6 +58,7 @@ public class SetWindows extends PopupWindow {
         mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
         mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
         mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+        mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
         mOne.setOnClickListener(v -> {
 
@@ -68,6 +70,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "MAIN");
@@ -85,6 +88,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "EXPAND");
@@ -102,6 +106,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "EXPAND2");
@@ -119,6 +124,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "NEW_MAIN");
@@ -136,6 +142,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "NEW_MAIN_FG");
@@ -154,6 +161,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.colorBlueMenu, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "NEW_MAIN_SC");
@@ -171,6 +179,7 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.colorBlueMenu, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "MAIN_ZR");
@@ -188,9 +197,28 @@ public class SetWindows extends PopupWindow {
             mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
             mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.colorBlueMenu, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
 
             //写一个系统属性
             SystemProperties.set(SETGPIO_PATH, "MAIN_RK");
+            EventBus.getDefault().postSticky(new WeightEvent(""));
+            dismiss();
+        });
+
+        mNine.setOnClickListener(v -> {
+
+            mOne.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mTwo.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mThree.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mFour.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mFive.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mSix.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mSeven.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mEight.setTextColor(AppSet.getInstance().getResources().getColor(R.color.color_tab_choose_un, null));
+            mNine.setTextColor(AppSet.getInstance().getResources().getColor(R.color.colorBlueMenu, null));
+
+            //写一个系统属性
+            SystemProperties.set(SETGPIO_PATH, "MAIN_ZR_LIBGPIOD");
             EventBus.getDefault().postSticky(new WeightEvent(""));
             dismiss();
         });
