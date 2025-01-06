@@ -13,8 +13,8 @@ android {
         applicationId "com.speedatagpios"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 12
-        versionName "2.2-" + getDate()
+        versionCode 13
+        versionName "2.3-" + getDate()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -45,6 +45,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation files('libs/libDevice_V1.8.2_2024-07-19.aar')
+    implementation files('libs/libDevice_V1.8.3_2025-01-06.aar')
     implementation 'org.greenrobot:eventbus:3.1.1'
 }

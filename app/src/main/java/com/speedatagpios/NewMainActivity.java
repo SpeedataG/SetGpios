@@ -1,5 +1,6 @@
 package com.speedatagpios;
 
+import static android.serialport.DeviceControlSpd.POWER_NEW_ZHANRUI;
 import static android.serialport.DeviceControlSpd.POWER_ZHANRUI;
 import static com.speedatagpios.ScanConstant.SETGPIO_PATH;
 
@@ -41,7 +42,7 @@ import java.util.List;
 
 /**
  * @author xuyan  新的GPIO调试页面
- * 添加展锐平台  20231205 添加RK平台
+ * 添加展锐平台  添加RK平台  添加libgpiod和new_zhanrui
  */
 public class NewMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -276,6 +277,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio1.getText().toString()));
+                        mTbt1.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -417,6 +430,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                 } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio2.getText().toString()));
+                        mTbt2.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
                     Logcat.d(isChecked);
                     if (isChecked) {
                         deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio2.getText().toString()));
@@ -581,6 +606,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio3.getText().toString()));
+                        mTbt3.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -733,6 +770,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio4.getText().toString()));
+                        mTbt4.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -874,6 +923,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                 } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio5.getText().toString()));
+                        mTbt5.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
                     Logcat.d(isChecked);
                     if (isChecked) {
                         deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio5.getText().toString()));
@@ -1038,6 +1099,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio6.getText().toString()));
+                        mTbt6.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio6.getText().toString()));
+                        mTbt6.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
@@ -1180,6 +1253,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                 } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio7.getText().toString()));
+                        mTbt7.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio7.getText().toString()));
+                        mTbt7.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
                     Logcat.d(isChecked);
                     if (isChecked) {
                         deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio7.getText().toString()));
@@ -1344,6 +1429,18 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
 
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    Logcat.d(isChecked);
+                    if (isChecked) {
+                        deviceControl.zrLibgpiodSetGpioOn(Integer.parseInt(mBtnGpio8.getText().toString()));
+                        mTbt8.setBackgroundResource(R.drawable.ic_switch_high);
+
+                    } else {
+                        deviceControl.zrLibgpiodSetGpioOff(Integer.parseInt(mBtnGpio8.getText().toString()));
+                        mTbt8.setBackgroundResource(R.drawable.ic_switch_off);
+
+                    }
+
                 }
 
 
@@ -1389,6 +1486,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_RK);
                 } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
                     deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.MAIN_ZR_LIBGPIOD);
+                } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+                    deviceControl = new DeviceControlSpd(DeviceControlSpd.PowerType.NEW_MAIN_ZHANRUI);
                 }
 
 
@@ -1402,8 +1501,6 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            default:
-                break;
             case R.id.btn_gpio1:
 
                 if ("EXPAND".equals(getType()) || "EXPAND2".equals(getType())) {
@@ -1462,6 +1559,8 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
 
+            default:
+                break;
         }
     }
 
@@ -1530,6 +1629,27 @@ public class NewMainActivity extends AppCompatActivity implements View.OnClickLi
                         } else if ("MAIN_ZR_LIBGPIOD".equals(getType())) {
                             //不读，没法判断，读的也大概率是不能用来判断的。
                             //Toast.makeText(NewMainActivity.this, R.string.libgpiod, Toast.LENGTH_SHORT).show();
+                        } else if ("NEW_MAIN_ZHANRUI".equals(getType())) {
+
+                            //读高还是低,直接读value值是1还是0。
+                            String path = POWER_NEW_ZHANRUI + Integer.parseInt(text);
+                            InputStream inputStream;
+                            try {
+                                inputStream = new FileInputStream(path);
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                            String result = convertStreamToString(inputStream);
+                            if ("1".equals(result)) {
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_high);
+                                tbtn.setChecked(true);
+                            } else if ("0".equals(result)) {
+                                tbtn.setChecked(false);
+                                tbtn.setBackgroundResource(R.drawable.ic_switch_off);
+                            } else {
+                                Toast.makeText(NewMainActivity.this, R.string.this_is_the, Toast.LENGTH_SHORT).show();
+                            }
+
                         } else if ("MAIN_RK".equals(getType())) {
                             //读高还是低,直接读value值是1还是0。
                             String path = POWER_ZHANRUI + "/gpio" + text + "/" + "value";
